@@ -15,9 +15,7 @@ function playRound(HumanChoice, computerChoice) {
 
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-console.log(computerSelection)
+
 playRound(humanSelection, computerSelection);
 
 // Initial weights with no logic
@@ -29,11 +27,21 @@ playRound(humanSelection, computerSelection);
 function getComputerChoice () {
     const choices = ["Rock", "Paper", "Scissors"];
     let randommizer = Math.floor(Math.random() * choices.length);
-    return choices[randommizer]
+    return choices[randommizer];
 }
-console.log(getComputerChoice());
 // create a way for a player to choose
 // make case insensitve 
 function getHumanChoice () {
-
-}
+    const choices = ["Rock", "Paper", "Scissors"];
+    let humanChoice = prompt('Whats it gonna be?').charAt(0).toUpperCase;
+    while (!choices.includes(humanChoice)) {
+        alert('invalid choice')
+        humanChoice = prompt('Whats it gonna be?');
+    } 
+    return humanChoice;
+    }
+getHumanChoice();
+const humanSelection = getHumanChoice();
+console.log(humanSelection)
+const computerSelection = getComputerChoice();
+console.log(computerSelection)
