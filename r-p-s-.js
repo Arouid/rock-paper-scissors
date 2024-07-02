@@ -1,47 +1,61 @@
-// assign variables and weights to rock
-const rock = 'Rock';
-// assign variables and weightsb paper
-const paper = 'Paper';
-// assign variables and weights scissors
-const scissors = 'Scissors';
-
-// track games played vs scorekeeping 
-// incremnt number based on winner
-let humanScore = 0;
-let computerScore = 0;
-// create two game modes -- single and best of
-// code function to console.log
-function playRound(HumanChoice, computerChoice) {
-
-}
-
-
-playRound(humanSelection, computerSelection);
-
-// Initial weights with no logic
-// rock > scissors < paper
-// paper > rock < scissors
-// scissors > paper < rock
-
-// create a way to randomize choice
+// create a way to randomize computer choice
 function getComputerChoice () {
     const choices = ["Rock", "Paper", "Scissors"];
-    let randommizer = Math.floor(Math.random() * choices.length);
-    return choices[randommizer];
+    const computerChoice = Math.floor(Math.random() * choices.length);
+    return choices[computerChoice];
 }
 // create a way for a player to choose
 // make case insensitve 
 function getHumanChoice () {
     const choices = ["Rock", "Paper", "Scissors"];
-    let humanChoice = prompt('Whats it gonna be?').charAt(0).toUpperCase;
+    const humanChoice = prompt('Whats it gonna be?');
     while (!choices.includes(humanChoice)) {
-        alert('invalid choice')
+        alert('First letter must be capitalized')
         humanChoice = prompt('Whats it gonna be?');
     } 
     return humanChoice;
     }
-getHumanChoice();
-const humanSelection = getHumanChoice();
-console.log(humanSelection)
-const computerSelection = getComputerChoice();
-console.log(computerSelection)
+
+function playRound(humanChoice, computerChoice) {
+    if (humanChoice === computerChoice) {
+        return "Its a tie!"
+    } 
+    
+    if  
+        ((humanChoice === "Rock" && computerChoice === "Scissors") || 
+        (humanChoice === "Paper" && computerChoice === "Rock") ||
+        (humanChoice === "Scissors" && computerChoice === "Paper")) {
+
+            return "You win!"; 
+            
+        } else {
+            return "You lose!";
+        }
+
+    }
+
+    
+// code function to console.log 
+// Initialize a variable to store results
+// Initialize a variable to store results
+let results = [];
+let playAgain = true;
+
+while (playAgain) {
+    const humanSelection = getHumanChoice();
+    console.log("Human's choice:", humanSelection);
+
+    const computerSelection = getComputerChoice();
+    console.log("Computer's choice:", computerSelection);
+
+    const result = playRound(humanSelection, computerSelection);
+    console.log(result);
+
+    // Add the result to the results array
+    results.push(result);
+
+    // Ask if the user wants to play again
+    playAgain = confirm("Do you want to play again?");
+}
+
+console.log("All results:", results);
